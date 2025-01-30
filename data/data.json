@@ -1,0 +1,56 @@
+{
+  "data": {
+    "name": "Gütiokipänjä",
+    "owners": ["Osono", "Fukuo"],
+    "address": {
+      "street": "330 Shōnaichō, Chūō-ku",
+      "city": "Koriko"
+    },
+    "delivery": {
+      "base_price": 1.9,
+      "speedy_surcharge": 2,
+      "min_order": 8,
+      "free_delivery_order": 12,
+      "couriers": [
+        {
+          "courier_name": "Kiki",
+          "courier_id": "C1",
+          "speedy_delivery": true,
+          "img": "kiki.png"
+        },
+        {
+          "courier_name": "Jiji",
+          "courier_id": "C2",
+          "speedy_delivery": false,
+          "img": "jiji.png"
+        },
+        {
+          "courier_name": "Tombo",
+          "courier_id": "C3",
+          "speedy_delivery": false,
+          "img": "tombo.png"
+        }
+      ]
+    },
+    "products": [
+      {
+        "product_name": "Steam bun",
+        "product_id": "P1",
+        "img": "steam-bun.png",
+        "price": 2.5
+      },
+      {
+        "product_name": "Cookie",
+        "product_id": "P2",
+        "img": "cookie.jpg",
+        "price": 1.8
+      },
+      {
+        "product_name": "Cream puff",
+        "product_id": "P3",
+        "img": "cream-puff.jpg",
+        "price": 3.2
+      }
+    ]
+  }
+}
