@@ -22,6 +22,14 @@ export const orderDefaultValues: OrderType = {
   totalOrder: 0,
 }
 
-export enum ButtonTypes {}
+export enum ButtonTypes {
+  SUBMIT = 'submit',
+  RESET = 'reset',
+  BUTTON = 'button',
+}
 
-export enum ButtonTexts {}
+export enum ButtonTexts {
+  ORDER = 'Place order',
+  HOME = 'Return to shop',
+  SUBMIT = 'Submit',
+}

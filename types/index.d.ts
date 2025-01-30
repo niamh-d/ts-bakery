@@ -1,40 +1,89 @@
-/*
-
 import { ButtonTexts, ButtonTypes } from '../constants/constants'
 
-type BaseType = {}
+type BaseType = {
+  img: string
+}
 
-type CourierType = BaseType & {}
+type CourierType = BaseType & {
+  courierId: string
+  courierName: string
+  speedyDelivery: boolean
+}
 
-type ProductType = BaseType & {}
+type ProductType = BaseType & {
+  productId: string
+  productName: string
+  price: number
+}
 
-type AddressType = {}
+type AddressType = {
+  street: string
+  city: string
+}
 
-type DeliveryDataType = {}
+type DeliveryDataType = {
+  couriers: Courier[]
+  basePrice: number
+  speedySurcharge: number
+  minOrder: number
+  freeDeliveryOrder: number
+}
 
-type BakeryDataType = {}
+type BakeryDataType = {
+  name: string
+  owners: string[]
+  address: Address
+  delivery: DeliveryDataType
+  products: Product[]
+}
 
 type ProductPropsType = ProductType
 type ProductsPropsType = {
-  handler: (??????) => void
+  handler: (data: BakeryDataType) => void
 }
 
-type FormDataType = {}
+type FormDataType = {
+  steamBunsQuantity: number
+  cookiesQuantity: number
+  creamPuffsQuantity: number
+  speedyDelivery: boolean
+}
 
 type FormPropsType = {
-  changeFormHandler: ????
-  submitOrderHandler: ????
+  changeFormHandler: (vals: FormDataType) => void
+  submitOrderHandler: (order: FormDataType) => void
 }
 
-type OrderType = FormDataType & {}
+type OrderType = FormDataType & {
+  orderId: string
+  deliveryIsFree: boolean
+  courier: CourierType
+  totalOrder: number
+}
 
-type PricingPropsType = {}
+type PricingPropsType = {
+  pricing: OrderPricingType
+  orderData: FormDataType
+  products: ProductType[]
+}
 
-type OrderPricingType = {}
+type OrderPricingType = {
+  totalOrder: number
+  productsTotal: number
+  speedyDeliverySurcharge: number
+  minOrderSurcharge: number
+  productsSubTotal: number
+  deliveryCost: number
+  isFreeDelivery: boolean
+}
 
-type SuccessPropsType = {}
+type SuccessPropsType = {
+  order: OrderType
+  handler: () => void
+}
 
 type ButtonStyles =
+  | 'btn btn-primary'
   | 'btn btn-secondary'
   | 'btn btn-info'
   | 'btn btn-warning'
@@ -46,7 +95,13 @@ type ButtonStyles =
   | 'btn btn-outline-success'
   | 'btn btn-disabled'
 
-type ButtonPropsType = {}
+type ButtonPropsType = {
+  text?: ButtonTexts
+  handler?: () => void
+  styles?: ButtonStyles
+  type?: ButtonTypes
+  isDisabled?: boolean
+}
 
 export {
   SuccessPropsType,
@@ -64,5 +119,3 @@ export {
   OrderType,
   ButtonPropsType,
 }
-
-*/
