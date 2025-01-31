@@ -1,5 +1,5 @@
-import { keysToCamel } from '../utils/string.utils'
-import { BakeryDataType, DeliveryDataType, ProductType } from '../types'
+import { convertKeysToCamel } from '../utils/string.utils'
+import { BakeryDataType } from '../types'
 
 class BakeryDataAPI {
   private static instance: BakeryDataAPI
@@ -19,12 +19,13 @@ class BakeryDataAPI {
   public async getBakeryData(): Promise<BakeryDataType> {
     const response = await fetch(this.url)
     const data = await response.json()
+
     return {
       name: data.name,
       owners: data.owners,
       address: data.address,
-      delivery: keysToCamel(data.delivery) as DeliveryDataType,
-      products: keysToCamel(data.products) as ProductType[],
+      delivery: convertKeysToCamel(data.delivery),
+      products: convertKeysToCamel(data.products),
     }
   }
 }
