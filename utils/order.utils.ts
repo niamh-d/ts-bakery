@@ -12,5 +12,5 @@ export const selectCourier = (couriers: CourierType[], speedyDelivery: boolean):
   } else {
     arr = couriers
   }
-  return couriers[randInt(0, arr.length - 1)]
+  return arr[randInt(0, arr.length - 1)]!
 }

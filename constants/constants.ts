@@ -24,7 +24,6 @@ export const orderDefaultValues: OrderType = {
 
 export enum ButtonTypes {
   SUBMIT = 'submit',
-  RESET = 'reset',
   BUTTON = 'button',
 }
 

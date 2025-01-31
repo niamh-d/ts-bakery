@@ -11,15 +11,16 @@
 
 This is a React project created by Niamh Doyle (Github: [@niamh-d](https://github.com/niamh-d)) to introduce creating types in TypeScript (TS) and using these types to faciliate the passing of data in a simple front-end single page application (SPA) for React/JavaScript developers who are new to TS.
 
-#### Additional techologies
+#### Noteable packages used in the project
 
 - [React hook form](https://react-hook-form.com/) – form handling
 - [DaisyUI](https://daisyui.com/) for fast component development
 - [TailwindCSS](https://tailwindcss.com/) for styling
+- [Vitest](https://vitest.dev/) for testing
 
 ### Note
 
-This project is not intended to be an example of best practice for structuring a React SPA nor is it intended to be an exhasustive overview of the features of TS. This introduction expects the user to have prior experience with React and JavaScript.
+This project is not intended to be an example of best practice for structuring a React SPA nor is it intended to be an exhaustive overview of the features of TS or TS best practices. The React app is there to given context to using TS types. This introduction expects the user to have prior experience with React and JavaScript.
 
 ### Images and names
 
@@ -73,6 +74,7 @@ npm run dev
 - utils directory: contains the utility functions used in the application – `maths.utils.ts`, `order.utils.ts`, and `string.utils.ts`.
 - constants directory: contains the constants used in the application
 - src directory: contains App.tsx, components directory
+- \_playground directory: contains the files used in the initial tasks
 
 ### Components
 
@@ -83,14 +85,30 @@ npm run dev
 - success component (displays the order success messaging)
 - form component (captures user input and submits the order)
 
-## Initial Tasks
+## INITIAL TASKS
+
+Writing TypeScript code and manually compling it to JavaScript. Testing output with Vitest to ensure everything works as expected.
+
+- [] Inspect file `_playground/start.js` (JS file!)
+- [] Run the file with command `node _playground/start.js` – the output is not as one would expect
+- [] Run tests with Vitest using command `npm test` – all tests will fail (this is expected)
+- [] Copy all contents of the file to BOTH empty files – `start-original.js` and `start.ts` (TS file). Open the TS file. You can ignore the other file for now.
+- [] Notice how there are loads of warnings in the TS file.
+- [] Fix these warnings using TypeScript
+- [] Once the file is free of TS warnings, in a fresh terminal, run command `tsc \_playground/start.ts` to compile the file to JS
+- [] Open the JS file `start.js`. You will notice that it has been overwritten by TS with complied JS code. It is different from the code we wrote (contrast with the code you copied to `start-original.js`). You will also notice that all our TS extras are no longer to be seen. This is because we have compiled the file to vanilla JS.
+- [] Return to the terminal that Vitest is running and voilà all your tests are passing! Congrats! Now move on the the next tasks.
+
+## MAIN ACTIVITY
+
+### Prep
 
 - [] Inspect the json file `data/data.json` to understand its structure and the data it contains.
 - [] Have a look at the application to understand how it works and the data flows.
 - [] Uncomment the code in the file `types/types.ts`.
 - [] Fix the TS warnings in the files `utils/maths.utils.ts` and `utils/order.utils.ts`.
 
-## SCENARIO
+### Scenario
 
 DISASTER HAS STRUCK!
 
@@ -130,6 +148,13 @@ npm run lint
 ## If you got this far
 
 If you got this far, congratulations! This was a tough one! Take a deep breathe and pat yourself on the back. You've done it! I hope you had fun being introduced to TypeScript and now feel comfortable taking the next step of using it in your own projects.
+
+## Where to go next
+
+- [Official TypeScript documentation](https://www.typescriptlang.org/docs/)
+- [Tips and Tricks from Matt Pocock](https://www.youtube.com/@mattpocockuk/videos)
+- [Total TypeScript Essentials online book](https://www.totaltypescript.com/books/total-typescript-essentials)
+- [Beginner's TypeScript](https://www.totaltypescript.com/tutorials/beginners-typescript)
 
 ## Licence
 

@@ -1,48 +1,37 @@
-import { CourierType, ProductType, DeliveryDataType } from '../types'
-
-type ConvertToCamelType =
-  | DeliveryDataType
-  | ProductType
-  | CourierType
-  | ProductType[]
-  | CourierType[]
-  | Map
-interface Map {
-  [key: string]: string | boolean | number | CourierType[]
+type AnyObject = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
 }
+type CaseConverter = (str: string) => string
 
-const snakeToCamel = (str: string): string =>
-  str.toLowerCase().replace(/[-_][a-z]/g, (group) => group[1].toUpperCase())
+const snakeToCamelCase: CaseConverter = (str: string): string =>
+  str.replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''))
 
-const isArray = function (arr: ConvertToCamelType): boolean {
-  return Array.isArray(arr)
-}
+const convertKeysCasing =
+  <R extends AnyObject>(caseConverter: CaseConverter) =>
+  (obj: AnyObject | AnyObject[]): R => {
+    if (Array.isArray(obj))
+      return obj.map((item) =>
+        typeof item === 'object' ? convertKeysCasing<R>(caseConverter)(item) : item,
+      ) as unknown as R
 
-const isObject = function (obj: ConvertToCamelType): boolean {
-  return obj === Object(obj) && !isArray(obj) && typeof obj !== 'function'
-}
+    return Object.entries(obj).reduce((converted: AnyObject, [key, value]) => {
+      const convertedKey = caseConverter(key)
+      converted[convertedKey] =
+        value && typeof value === 'object'
+          ? Array.isArray(value)
+            ? value.map((item) =>
+                typeof item === 'object' ? convertKeysCasing(caseConverter)(item) : item,
+              )
+            : convertKeysCasing(caseConverter)(value)
+          : value
 
-export const keysToCamel = function (obj: ConvertToCamelType): ConvertToCamelType {
-  if (isObject(obj)) {
-    const n = {} as ConvertToCamelType
-
-    Object.keys(obj as Map).forEach((key: string) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      n[snakeToCamel(key) as keyof ConvertToCamelType] = keysToCamel(
-        obj[key as keyof ConvertToCamelType],
-      )
-    })
-
-    return n as ConvertToCamelType
-  } else if (isArray(obj)) {
-    return (obj as ProductType[] | CourierType[]).map((i: ProductType | CourierType) => {
-      return keysToCamel(i)
-    }) as ProductType[] | CourierType[]
+      return converted
+    }, {}) as R
   }
 
-  return obj
-}
+export const convertKeysToCamel = <R extends AnyObject>(obj: AnyObject | AnyObject[]): R =>
+  convertKeysCasing<R>(snakeToCamelCase)(obj)
 
 export const formatPrice = (price: number): string => {
   return price.toLocaleString('en-GB', {
